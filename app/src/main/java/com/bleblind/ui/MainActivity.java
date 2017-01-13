@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekArc seekArc) {
-                byte buf[] = new byte[] { Profile.CMD_TYPE_SET, Profile.CMD_SET_LEVEL, (byte)seekArc.getProgress(), 0x0, 0x0 };
+                byte buf[] = new byte[] { Profile.CMD_TYPE_SET, Profile.CMD_SET_LEVEL, (byte) (seekArc.getProgress()+1), 0x0, 0x0 };
                 characteristicTx.setValue(buf);
                 mBluetoothLeService.writeCharacteristic(characteristicTx);
             }
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         dialog = new ProgressDialog(this);
         dialog.setCancelable(false);
         dialog.setIndeterminate(true);
-       // dialog.setTitle("Connecting");
+        dialog.setTitle("Connecting");
         dialog.show();
 
         targetAddress = getIntent().getExtras().getString(ScanActivity.TARGET_DEVICE_ADDRESS_KEY);
@@ -155,6 +155,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         disableUIElements();
+        unbindService(mServiceConnection);
+        mBluetoothLeService.disconnect();
+        mBluetoothLeService.close();
         unregisterReceiver(mGattUpdateReceiver);
     }
 

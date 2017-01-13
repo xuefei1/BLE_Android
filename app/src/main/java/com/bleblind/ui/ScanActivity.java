@@ -45,7 +45,7 @@ public class ScanActivity extends Activity {
 
     private boolean scanFlag = false;
 
-    private static final long SCAN_PERIOD = 1000;
+    private static final long SCAN_PERIOD = 2000;
     private static final int REQUEST_ENABLE_BT = 1;
 
     @Override

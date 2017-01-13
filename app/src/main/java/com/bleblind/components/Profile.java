@@ -9,7 +9,7 @@ public class Profile {
 
     public static final int SUPPORTED_POSITIONS= 5;
 
-    public static final String BLE_MODULE_FILTER = "BLE mini";
+    public static final String BLE_MODULE_FILTER = "BLE Mini";
 
     private static final HashMap<String, String> attributes = new HashMap<>();
     public static final String CLIENT_CHARACTERISTIC_CONFIG = "00002902-0000-1000-8000-00805f9b34fb";
